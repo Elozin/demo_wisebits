@@ -1,0 +1,21 @@
+{
+    "name": "evgenijlozin/demo_wisebits",
+    "authors": [
+        {
+            "name": "lozin",
+            "email": "lozin@wamba.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "beberlei/assert": "*",
+        "ext-mbstring": "*",
+        "monolog/monolog": "*",
+        "phpunit/phpunit": "*",
+        "psr/log": "^3.0"
+    }
+}
