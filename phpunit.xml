@@ -1,4 +1,0 @@
-<phpunit
-        bootstrap="vendor/autoload.php">
-
-</phpunit>
