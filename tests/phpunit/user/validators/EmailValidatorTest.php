@@ -138,4 +138,4 @@ class EmailValidatorTest extends TestCase
 
         return $user;
     }
- }
+}

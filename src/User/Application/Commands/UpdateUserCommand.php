@@ -17,8 +17,7 @@ class UpdateUserCommand
         ?string $username,
         ?string $email,
         ?string $notes
-    )
-    {
+    ) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;

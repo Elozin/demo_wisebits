@@ -8,7 +8,6 @@ use App\User\Application\Repositories\UserRepository;
 use App\User\Infrastructure\Exceptions\UserNotFountException;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Exception;
 
 class EmailValidator
 {
@@ -33,17 +32,17 @@ class EmailValidator
     {
         try {
             Assertion::email($email);
-        } catch (AssertionFailedException $ex) {
+        } catch (AssertionFailedException) {
             throw new InvalidEmailException('Invalid email format');
         }
 
         try {
             Assertion::maxLength($email, self::MAX_LENGTH);
-        } catch (AssertionFailedException $ex) {
+        } catch (AssertionFailedException) {
             throw new InvalidEmailException('Invalid username length');
         }
 
-       $blockedEmailDomainsCollection = $this->blockedEmailDomainProvider->getBlockedEmailDomainCollection();
+        $blockedEmailDomainsCollection = $this->blockedEmailDomainProvider->getBlockedEmailDomainCollection();
 
         if ($this->isEmailDomainBlocked($email, $blockedEmailDomainsCollection)) {
             throw new InvalidEmailException('Email domain is blocked');
@@ -79,7 +78,7 @@ class EmailValidator
                 return true;
             }
             return false;
-        } catch (UserNotFountException $ex) {
+        } catch (UserNotFountException) {
             return false;
         }
     }

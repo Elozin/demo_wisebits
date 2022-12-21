@@ -4,13 +4,10 @@ namespace App\User\Application\Validators\Username;
 
 use App\User\Application\BadWord\BadWordCollection;
 use App\User\Application\BadWord\BadWordProvider;
-use App\User\Application\BlockedEmailDomains\BlockedEmailDomainProvider;
 use App\User\Application\Repositories\UserRepository;
-use App\User\Application\Validators\Email\InvalidEmailException;
 use App\User\Infrastructure\Exceptions\UserNotFountException;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Exception;
 
 class UsernameValidator
 {
@@ -37,13 +34,13 @@ class UsernameValidator
         try {
             Assertion::maxLength($username, self::MAX_LENGTH);
             Assertion::minLength($username, self::MIN_LENGTH);
-        } catch (AssertionFailedException $ex) {
+        } catch (AssertionFailedException) {
             throw new InvalidUsernameException('Invalid username length');
         }
 
         try {
             Assertion::regex($username, '/^[a-zA-Z\d]+$/');
-        } catch (AssertionFailedException $ex) {
+        } catch (AssertionFailedException) {
             throw new InvalidUsernameException('Invalid username format. Only numbers and letters');
         }
 
@@ -51,6 +48,10 @@ class UsernameValidator
 
         if ($this->hasBadWordInUsername($username, $badWordCollection)) {
             throw new InvalidUsernameException('Username contains bad word');
+        }
+
+        if ($this->isUsernameExist($username)) {
+            throw new InvalidUsernameException('Username already exist');
         }
 
         return true;
@@ -69,10 +70,9 @@ class UsernameValidator
     private function isUsernameExist(string $username): bool
     {
         try {
-            if ($this->userRepository->findByUsername($username)) {
-                return true;
-            }
-        } catch (UserNotFountException $ex) {
+            $this->userRepository->findByUsername($username);
+            return true;
+        } catch (UserNotFountException) {
             return false;
         }
     }

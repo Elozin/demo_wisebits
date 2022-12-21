@@ -27,10 +27,10 @@ interface UserRepository
     /**
      * @throws UserNotFountException
      */
-    public function findByUsername(): UserEntity;
+    public function findByUsername(string $username): UserEntity;
 
     /**
      * @throws UserNotFountException
      */
-    public function findByEmail(): UserEntity;
+    public function findByEmail(string $email): UserEntity;
 }

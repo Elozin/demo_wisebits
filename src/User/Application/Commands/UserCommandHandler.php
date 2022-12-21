@@ -26,8 +26,7 @@ class UserCommandHandler
         EmailValidator $emailValidator,
         UsernameValidator $usernameValidator,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
         $this->emailValidator = $emailValidator;
         $this->usernameValidator = $usernameValidator;
