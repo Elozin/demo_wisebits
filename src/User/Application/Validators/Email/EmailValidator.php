@@ -39,7 +39,7 @@ class EmailValidator
         try {
             Assertion::maxLength($email, self::MAX_LENGTH);
         } catch (AssertionFailedException) {
-            throw new InvalidEmailException('Invalid username length');
+            throw new InvalidEmailException('Invalid email length');
         }
 
         $blockedEmailDomainsCollection = $this->blockedEmailDomainProvider->getBlockedEmailDomainCollection();
