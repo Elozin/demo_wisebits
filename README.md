@@ -1,11 +1,13 @@
 # demo_wisebits
 Demo for wisebits.
-После клонирование репозитория необходимо установить зависимости проекта. Для этого необходимо выполнить:
 
-`composer install`
+Необходимо реализовать класс/классы для чтения, создания и изменения записей в таблице users.
 
-Также в проекте есть unit тесты. Для запуска понадобится phpunit. Необходимо указать файл для автолоада. 
-Команда для запуска тестов:
+Установка зависимостей:
 
-`phpunit tests/phpunit/ --bootstrap='vendor/autoload.php'`
+`php composer.phar install`
+
+Запуск unit тестов:
+
+`vendor/bin/phpunit tests/phpunit/`
 
